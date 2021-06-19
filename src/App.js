@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
-import Items from "./components/Items";
+import Items from "./components/ItemsList";
+// import Home from "./components/Home";
+import AddItem from "./components/AddItem";
+// import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 function App() {
   const [items, setItems] = useState([
@@ -23,17 +26,36 @@ function App() {
     },
   ]);
 
-  const handleQuantityIncreament = async (item) => {
+  const handleAddItem = (itemName) => {
+    // console.log(itemName);
+
+    setItems((prevItems) => {
+      return [{ name: itemName, quantity: 1 }, ...prevItems];
+    });
+  };
+
+  const handleQuantityIncreament = (item) => {
     const clonearray = [...items];
     const index = clonearray.indexOf(item);
     clonearray[index] = { ...item };
     clonearray[index].quantity++;
-    setItems([...clonearray, clonearray[index].quantity]);
-    console.log(clonearray[index].quantity);
-    console.log(items[index].quantity);
+    setItems([...clonearray]);
+    // console.log(clonearray[index].quantity);
+    // console.log(items[index].quantity);
   };
-  const handleQuantityDecreament = () => {
-    console.log("-");
+  const handleQuantityDecreament = (item) => {
+    // console.log(item.quantity);
+    if (item.quantity === 1) {
+      alert("Quantity can't be zero");
+    } else {
+      const clonearray = [...items];
+      const index = clonearray.indexOf(item);
+      clonearray[index] = { ...item };
+      clonearray[index].quantity--;
+      setItems([...clonearray]);
+      // console.log(clonearray[index].quantity);
+      // console.log(items[index].quantity);
+    }
   };
   const handleItemDelete = (id) => {
     setItems((prevItems) => {
@@ -46,6 +68,9 @@ function App() {
   return (
     <div className="App">
       <Header />
+
+
+      <AddItem onClick={handleAddItem} />
       {items.length > 0 ? (
         <Items
           onIncreament={handleQuantityIncreament}

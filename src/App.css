@@ -14,6 +14,10 @@
   text-align: center;
   display: flex;
   justify-content: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 .Item {
   background-color: rgb(243, 172, 7);
@@ -22,10 +26,39 @@
   display: flex;
   justify-content: space-between;
   width: auto;
+  text-transform: capitalize;
 }
+
 .Items {
   margin: 1em 9em;
   padding: 1em;
 
   background-color: darkslateblue;
+}
+.AddItem {
+  margin: 1em 9em;
+  padding: 1em 3em;
+  border: solid rgb(243, 172, 7) 1px;
+  /* border-radius: 8px; */
+  width: fit-content;
+  z-index: -2;
+}
+
+input {
+  margin: 0.4em 0;
+  padding: 0.3em 1em;
+  font-size: x-large;
+  border: none;
+  color: black;
+  text-transform: capitalize;
+}
+
+.AddIcon {
+  position: relative;
+  left: 80%;
+  background-color: darkorange;
+  border-radius: 50%;
+  padding: 0.2em;
+  cursor: pointer;
+  z-index: 0;
 }

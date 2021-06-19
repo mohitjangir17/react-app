@@ -2,15 +2,16 @@ import React from "react";
 
 import "../App.css";
 import Item from "./Item";
+
 function Items({ items, onIncreament, onDecreament, onDelete }) {
   const handleIncreament = (item) => {
     onIncreament(item);
   };
-  const handleDecreament = () => {
-    onDecreament();
+  const handleDecreament = (item) => {
+    onDecreament(item);
   };
   const handleDelete = (id) => {
-    console.log(id);
+    // console.log(id);
     onDelete(id);
   };
   return (
@@ -23,8 +24,6 @@ function Items({ items, onIncreament, onDecreament, onDelete }) {
           remove={handleDelete}
           key={index}
           id={index}
-          title={item.name}
-          quantity={item.quantity}
         />
       ))}
     </div>
